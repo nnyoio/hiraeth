@@ -240,7 +240,9 @@ function renderDiscover() {
   const wrap = document.getElementById('discover-wrap')
   if (!tracks.length) { wrap.style.display='none'; return }
   wrap.style.display = 'block'
-  const picked = tracks.sort(()=>Math.random()-.5).slice(0,4)
+  const seen = new Set()
+  const unique = tracks.filter(t => { if (seen.has(t.trackId)) return false; seen.add(t.trackId); return true })
+  const picked = unique.sort(()=>Math.random()-.5).slice(0,4)
   setDiscoverGrid(window.innerWidth <= 620 ? 1 : discoverGrid)
   document.getElementById('discover').innerHTML = picked.map(t => {
     const img = bigArt(t.artworkUrl100)
