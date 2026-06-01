@@ -117,11 +117,11 @@ function renderPage() {
       <div class="p-stat"><b>${u.todayPick ? '✦' : '—'}</b>오늘의 추천</div>
     </div>
 
-    ${isEditing ? editForm(u) : viewMode(u, isMine, isAdmin, safeUrl, instaHandle, instaUrl)}
+    ${isEditing ? editForm(u) : viewMode(u, isMine, isAdmin, safeUrl, instaHandle, instaUrl, lib)}
   `
 }
 
-function viewMode(u, isMine, isAdmin, safeUrl, instaHandle, instaUrl) {
+function viewMode(u, isMine, isAdmin, safeUrl, instaHandle, instaUrl, lib) {
   const artistArt = u.artistArt && (u.artistArt.startsWith('data:') || u.artistArt.startsWith('http')) ? u.artistArt : null
   const songArt   = u.songArt   && u.songArt.startsWith('http') ? u.songArt : null
   const hasLinks  = instaHandle || u.artist || u.song || safeUrl
